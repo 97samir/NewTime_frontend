@@ -147,7 +147,7 @@
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Evita el comportamiento por defecto del formulario
     
-            fetch('https://newtimee.up.railway.app/auth/login', {
+            fetch('/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
