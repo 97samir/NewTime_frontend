@@ -73,7 +73,7 @@
                                     <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
                                 </div>
                                 <p class="text-center"><a href="" class="text-decoration-none">¿Olvidaste tu contraseña?</a></p>
-                                <p class="text-center">¿Aún no tienes una cuenta? </p>
+                                
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-success btn-block" onclick="window.location.href='register.html'">Crear nueva cuenta</button>
                                 </div>
@@ -147,7 +147,8 @@
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Evita el comportamiento por defecto del formulario
     
-            fetch('https://newtimee.up.railway.app/auth/login', {
+            //fetch('https://newtimee.up.railway.app/auth/login', {
+            fetch('/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
