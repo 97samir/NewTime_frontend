@@ -43,7 +43,7 @@ function ready(){
 }
 //Eliminamos todos los elementos del carrito y lo ocultamos
 function pagarClicked(){
-    alert("Gracias por la compra");
+    //alert("Gracias por la compraaa");
     //Elimino todos los elmentos del carrito
     var carritoItems = document.getElementsByClassName('carrito-items')[0];
     while (carritoItems.hasChildNodes()){
@@ -195,6 +195,54 @@ function actualizarTotalCarrito(){
     document.getElementsByClassName('carrito-precio-total')[0].innerText = 'S/.'+total.toLocaleString("es") + ",00";
 
 }
+
+
+// Función para verificar si el usuario está logueado
+function isUserLoggedIn() {
+    const token = localStorage.getItem('token');
+    // Aquí puedes validar si el token es válido (opcional) o simplemente verificar si existe.
+    return token !== null;
+}
+
+// Evento para el botón de compra
+document.getElementById('btn-pagar').addEventListener('click', () => {
+    if (isUserLoggedIn()) {
+        // Si el usuario está logueado, realizar la compra //alert('Compra exitosa');
+        Swal.fire({
+            icon: "success",
+            title: "Compra exitosa",
+            showConfirmButton: false,
+            timer: 1800
+            });
+        // Aquí podrías agregar lógica adicional para procesar la compra, como hacer una llamada al backend
+    } else {
+        // Si no está logueado, mostrar el mensaje de que debe iniciar sesión
+        
+        Swal.fire({
+            title: "Inicia sesión para continuar.",
+            //text: "¿Deseas continuar?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Confirmar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirigir a la página de login si elige "Yes"
+                window.location.href = 'login.html';
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                // Si elige "Cancel", no hacer nada (cancelar la operación)
+                Swal.fire({
+                    title: "Operación cancelada",
+                    //text: "No se ha realizado ninguna acción.",
+                    icon: "info"
+                });
+            }
+        });
+    }
+});
+
 
 
 
