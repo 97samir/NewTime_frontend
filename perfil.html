@@ -1,0 +1,70 @@
+<!-- profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Usuario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Perfil del Usuario</h2>
+        <div class="card">
+            <div class="card-body">
+                <div id="userInfo" class="card p-4"></div>
+                <button class="btn btn-danger mt-3" onclick="logout()">Cerrar sesión</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Obtener el token JWT del localStorage
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        alert('No has iniciado sesión');
+      window.location.href = 'login.html';  // Redirigir al login si no hay token
+    }
+
+    // Solicitar los datos del usuario al backend
+    async function getUserProfile() {
+        try {
+            const response = await fetch('/auth/perfil', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const user = await response.json();
+
+            if (response.ok) {
+                // Mostrar los datos del usuario en la página
+                //nombres, apellidos, son variables de register.html
+                document.getElementById('userInfo').innerHTML = `
+                    <p><strong>Nombres:</strong> ${user.nombres}</p>
+                    <p><strong>Apellidos:</strong> ${user.apellidos}</p>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Fecha de Nacimiento:</strong> ${user.fechaNacimiento}</p>
+                    <p><strong>Género:</strong> ${user.genero}</p>
+                `;
+            } else {
+                alert('Error al obtener los datos del usuario');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    function logout() {
+        // Lógica para cerrar sesión
+        localStorage.removeItem('token');
+        window.location.href = 'login.html'; // Redirigir al login
+    }
+    // Llamar a la función para obtener el perfil del usuario
+    getUserProfile();
+    </script>
+</body>
+</html>

@@ -157,18 +157,18 @@
                         showConfirmButton: false,
                         timer: 1800
                     });
-                    
-                    // Redirigir a otra página después del swet alert
-                    setTimeout(() => {
-                        window.location.href = '#';
-                    }, 1800);
-
-                    document.getElementById('loginForm').reset();
 
                     // Guardar el token de inicio de sesión en el localStorage
                     localStorage.setItem('token', data.token);
+                    
+                    // Redirigir a otra página después del sweet alert
+                    setTimeout(() => {
+                        window.location.href = 'perfil.html';
+                    }, 1800);
 
-                } else {
+                    document.getElementById('loginForm').reset();
+                    
+                }else {
                     // alert(data.message || 'Error en el inicio de sesión');
                     Swal.fire({
                         icon: "error",
