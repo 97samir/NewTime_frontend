@@ -40,6 +40,7 @@ function ready(){
 
     //Agregamos funcionalidad al botón comprar
     document.getElementsByClassName('btn-pagar')[0].addEventListener('click',pagarClicked)
+    
 }
 //Eliminamos todos los elementos del carrito y lo ocultamos
 function pagarClicked(){
@@ -204,44 +205,46 @@ function isUserLoggedIn() {
     return token !== null;
 }
 
+// el DOM ejecuta despues de que el javascript esté completamente cargado.
+// DOM (Document Object Model, o Modelo de Objetos del Documento)
+// Cuando una página web se carga en el navegador, el navegador crea un modelo del documento como un árbol de nodos  
+
 // Evento para el botón de compra
-document.getElementById('btn-pagar').addEventListener('click', () => {
-    if (isUserLoggedIn()) {
-        // Si el usuario está logueado, realizar la compra //alert('Compra exitosa');
-        Swal.fire({
-            icon: "success",
-            title: "Compra exitosa",
-            showConfirmButton: false,
-            timer: 1800
-            });
-        // Aquí podrías agregar lógica adicional para procesar la compra, como hacer una llamada al backend
-    } else {
-        // Si no está logueado, mostrar el mensaje de que debe iniciar sesión
-        
-        Swal.fire({
-            title: "Inicia sesión para continuar.",
-            //text: "¿Deseas continuar?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Confirmar",
-            cancelButtonText: "Cancelar"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Redirigir a la página de login si elige "Yes"
-                window.location.href = 'login.html';
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                // Si elige "Cancel", no hacer nada (cancelar la operación)
+document.addEventListener('DOMContentLoaded', () => {
+    const btnPagar = document.getElementById('btn-pagar');
+    if (btnPagar) { // Verificar que el botón existe antes de añadir el evento
+        btnPagar.addEventListener('click', () => {
+            if (isUserLoggedIn()) {
                 Swal.fire({
-                    title: "Operación cancelada",
-                    //text: "No se ha realizado ninguna acción.",
-                    icon: "info"
+                    icon: "success",
+                    title: "Compra exitosa",
+                    showConfirmButton: false,
+                    timer: 1800
+                });
+            } else {
+                Swal.fire({
+                    title: "Inicia sesión para continuar.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Confirmar",
+                    cancelButtonText: "Cancelar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'login.html';
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        Swal.fire({
+                            title: "Operación cancelada",
+                            icon: "info"
+                        });
+                    }
                 });
             }
         });
     }
 });
+
 
 
 
