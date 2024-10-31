@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Confirmar",
+                    confirmButtonText: "Iniciar sesión",
                     cancelButtonText: "Cancelar"
                 }).then((result) => {
                     if (result.isConfirmed) {
