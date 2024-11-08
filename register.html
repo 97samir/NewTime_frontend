@@ -56,35 +56,50 @@
 
     <!-- tarjetas -->
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-        <div class="card mb-3" style="max-width: 70rem;"> <!-- Ajusta el ancho -->
+        <div class="card mb-3" style="max-width: 85%;"> <!-- Ajusta el ancho -->
             <div class="row g-0">
-                <div class="col-md-6">
-                    <img src="img/register.jpg" class="img-fluid rounded-start">
+                <!-- Columna de la imagen -->
+                <div class="col-lg-6 d-none d-lg-flex">
+                    <img src="img/register.jpg" class="img-fluid rounded-start" width="100%">
                 </div>
-                <div class="col-md-6">
+                <!-- Columna del formulario -->
+                <div class="col-lg-6">
                     <div class="card-body">
-                        <form id="registerForm" class="mt-4">
+                        <form id="registerForm" class="p-1">
                             <div class="row">
-                                <div>
-                                    <input id="nombres" type="text" class="form-control form-control-lg mb-4" name="nombre" placeholder="Nombres" required>
-                                    <input id="apellidos" type="text" class="form-control form-control-lg mb-4" name="apellido" placeholder="Apellidos" required>
-                                    <input id="email" type="email" class="form-control form-control-lg mb-4" name="email" placeholder="Correo electrónico" required>
-                                    <input id="password" type="password" class="form-control form-control-lg mb-4" name="password" placeholder="Contraseña" required>
-                                    <input id="fechaNacimiento" type="date" class="form-control form-control-lg mb-4" name="fechaNacimiento" placeholder="Fecha de nacimiento" required>
-                                    <div class="container fs-5 mb-4">
-                                        <input class="form-check-input" type="radio" name="genero" id="hombre" value="hombre"> Hombre               
-                                        <input class="form-check-input" type="radio" name="genero" id="mujer" value="mujer"> Mujer                                
-                                    </div>      
+
+                                <div class="mb-4">
+                                    <input id="nombres" type="text" class="form-control form-control-lg" name="nombre" placeholder="Nombres" required>
+                                    <div class="invalid-feedback">Ingrese un nombre válido.</div>
                                 </div>
+                                <div class="mb-4">
+                                    <input id="apellidos" type="text" class="form-control form-control-lg" name="apellido" placeholder="Apellidos" required>
+                                    <div class="invalid-feedback">Ingrese un apellido válido.</div>
+                                </div>
+                                <div class="mb-4">
+                                    <input id="email" type="email" class="form-control form-control-lg" name="email" placeholder="Correo electrónico" required>
+                                    <div class="invalid-feedback">Ingrese un email válido.</div>
+                                </div>
+                                <div class="mb-4">
+                                    <input id="password" type="password" class="form-control form-control-lg" name="password" placeholder="Contraseña" required>
+                                    <div class="invalid-feedback">Ingrese una contraseña segura (mínimo 6 caracteres).</div>
+                                </div>
+                                <div class="mb-4">
+                                    <input id="fechaNacimiento" type="date" class="form-control form-control-lg" name="fechaNacimiento" placeholder="Fecha de nacimiento" required>
+                                    <div class="invalid-feedback">Ingrese una fecha válido.</div>
+                                </div>    
+                                
+                                <div class="container fs-5 mb-4">
+                                    <input class="form-check-input" type="radio" name="genero" id="hombre" value="hombre" required> Hombre               
+                                    <input class="form-check-input" type="radio" name="genero" id="mujer" value="mujer" required> Mujer                                
+                                </div> 
                                 
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-success btn-block mb-4">Registrarte</button>
                                 </div>
+                                
                             </div>
-                            
                                 <p class="text-center">¿Ya tienes una cuenta? <a href="login.html">Iniciar sesión</a></p>
-                            
-                            
                         </form>
 
                     </div>
@@ -124,6 +139,12 @@
             </div>
         </div>
     </footer>
+
+    <!-- Bootstrap JavaScript y Popper.js para tooltips y popovers -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> -->
+    <!-- Popper.js es una dependencia que Bootstrap utiliza para posicionar correctamente los tooltips y popovers. -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> -->
+    <!-- bundle, contiene el código de Bootstrap JS, incluyendo dependencias para tooltips, modales, y otros componentes interactivos. -->
 
     <script src="js/register.js"></script>
 </body>
